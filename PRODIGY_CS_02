@@ -1,0 +1,35 @@
+import numpy as np
+from PIL import Image
+
+def encrypt_image(input_path, output_path):
+    img = Image.open(input_path)
+    pixels = np.array(img)
+
+    # Shuffle the pixels
+    np.random.shuffle(pixels)
+
+    encrypted_img = Image.fromarray(pixels)
+    encrypted_img.save(output_path)
+    print("Image encrypted successfully!")
+
+def decrypt_image(input_path, output_path):
+    img = Image.open(input_path)
+    pixels = np.array(img)
+
+    # Reverse the shuffling
+    np.random.shuffle(pixels)
+
+    decrypted_img = Image.fromarray(pixels)
+    decrypted_img.save(output_path)
+    print("Image decrypted successfully!")
+
+# Image paths
+input_image = "input.jpg"
+encrypted_image = "encrypted_image.jpg"
+decrypted_image = "decrypted_image.jpg"
+
+# Encrypt the image
+encrypt_image(input_image, encrypted_image)
+
+# Decrypt the image
+decrypt_image(encrypted_image, decrypted_image)
