@@ -1,0 +1,33 @@
+  import re
+
+def validate_password(password):
+    # Check if the password has at least 8 characters
+    if len(password) < 8:
+        return False
+    
+    # Check if the password contains at least one uppercase letter
+    if not any(char.isupper() for char in password):
+        return False
+    
+    # Check if the password contains at least one lowercase letter
+    if not any(char.islower() for char in password):
+        return False
+    
+    # Check if the password contains at least one digit
+    if not any(char.isdigit() for char in password):
+        return False
+    
+    # Check if the password contains at least one special character
+    if not any(char in '!@#$%^&*(),.?":{}|<>' for char in password):
+        return False
+    
+    # If all the conditions are met, the password is valid
+    return True
+
+password = input("Enter your password: ")
+is_valid = validate_password(password)
+
+if is_valid:
+    print("Your password is valid.")
+else:
+    print("Your password does not meet the requirements.")
